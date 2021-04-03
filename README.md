@@ -1,7 +1,7 @@
 # TotemCooldownPlugin
 A minecraft game spigot server plugin.<br>
 You can give TotemOfUndying cooldown with ticks.<br>
-This project starts on Aug 24, 2020.<br>
+This project starts on Jul 27, 2020.<br>
 Update on Feb 24, 2021.<br>
 
 
