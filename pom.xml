@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>space.wtnpmt.mcplugin</groupId>
 	<artifactId>TotemCooldown</artifactId>
-	<version>spigot-0.1.11</version>
+	<version>spigot-0.1.12</version>
 	<repositories>
 		<repository>
 			<id>papermc</id>

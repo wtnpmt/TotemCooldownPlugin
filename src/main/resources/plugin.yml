@@ -1,6 +1,6 @@
 name: TotemCooldown
 main: space.wtnpmt.mcplugin.TCD.TotemCooldown
-version: 0.1.11
+version: 0.1.12
 authors: [pumpkin_pmt]
 permissions:
   totemcooldown.disable:
@@ -9,6 +9,6 @@ permissions:
 commands:
   totemcooldown:
     description: TotemCooldown commands.
-    usage: /<command> <gettime|settime> [time]
+    usage: /<command> <gettime/settime [time]>
     permission: totemcooldown.command
     aliases: [TCD]

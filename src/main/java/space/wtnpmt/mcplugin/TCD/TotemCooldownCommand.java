@@ -4,14 +4,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class TotemCooldownCommand implements CommandExecutor {
 
-	private final TotemCooldown plugin;
-
-	public TotemCooldownCommand(TotemCooldown plugin) {
-		this.plugin = plugin;
-	}
+	private final TotemCooldown plugin = JavaPlugin.getPlugin(TotemCooldown.class);
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -25,6 +22,11 @@ public class TotemCooldownCommand implements CommandExecutor {
 				case "settime":
 					plugin.ticktime = Integer.valueOf(args[1]);
 					player.sendMessage("new cooldown tick:" + plugin.ticktime);
+					try {
+					plugin.autosave();
+					}catch(Exception e) {
+						plugin.getLogger().warning("TotemCooldown cannot save config.");
+					}
 					break;
 				case "gettime":
 					player.sendMessage("cooldown tick:" + plugin.ticktime);

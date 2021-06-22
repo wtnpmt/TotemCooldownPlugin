@@ -7,7 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityResurrectEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-//import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -16,12 +16,8 @@ import org.bukkit.Material;
 
 public class TotemCooldownListener implements Listener {
 
-	protected final TotemCooldown plugin;
-	private HashMap<UUID, Integer> cooldown_map = new HashMap<UUID, Integer>();
-
-	public TotemCooldownListener(TotemCooldown plugin) {
-		this.plugin = plugin;
-	}
+	protected final TotemCooldown plugin = JavaPlugin.getPlugin(TotemCooldown.class);
+	private HashMap<UUID, Integer> cooldown_map = plugin.getCooldownMap();
 
 	@EventHandler
 	public void onEntityResurrect(EntityResurrectEvent event) {
@@ -57,10 +53,4 @@ public class TotemCooldownListener implements Listener {
 		cooldown_map.put(event.getPlayer().getUniqueId(), event.getPlayer().getCooldown(Material.TOTEM));
 	}
 
-	/*
-	 * @EventHandler public void onPlayerRespawn(PlayerRespawnEvent event) { int cd
-	 * = event.getPlayer().getCooldown(Material.TOTEM_OF_UNDYING);
-	 * //event.getPlayer().setCooldown(Material.TOTEM_OF_UNDYING, 0);
-	 * event.getPlayer().setCooldown(Material.TOTEM_OF_UNDYING, cd); }
-	 */
 }
