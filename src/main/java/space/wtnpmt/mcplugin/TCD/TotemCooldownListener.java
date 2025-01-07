@@ -16,7 +16,7 @@ import org.bukkit.Material;
 
 public class TotemCooldownListener implements Listener {
 
-	protected final TotemCooldown plugin = JavaPlugin.getPlugin(TotemCooldown.class);
+	private final TotemCooldown plugin = JavaPlugin.getPlugin(TotemCooldown.class);
 	private HashMap<UUID, Integer> cooldown_map = plugin.getCooldownMap();
 
 	@EventHandler
@@ -28,10 +28,10 @@ public class TotemCooldownListener implements Listener {
 			Player player = (Player) target;
 			if (player.hasPermission("totemcooldown.disable"))
 				return;
-			if (player.getCooldown(Material.TOTEM) > 0) {
+			if (player.getCooldown(Material.TOTEM_OF_UNDYING) > 0) {
 				event.setCancelled(true);
 			} else {
-				player.setCooldown(Material.TOTEM, plugin.ticktime);
+				player.setCooldown(Material.TOTEM_OF_UNDYING, plugin.ticktime);
 			}
 		}
 	}
@@ -43,14 +43,14 @@ public class TotemCooldownListener implements Listener {
 		Integer time = cooldown_map.get(event.getPlayer().getUniqueId());
 		if (time == null || time <= 0)
 			time = 0;
-		event.getPlayer().setCooldown(Material.TOTEM, time);
+		event.getPlayer().setCooldown(Material.TOTEM_OF_UNDYING, time);
 	}
 
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		if (event.getPlayer().hasPermission("totemcooldown.disable"))
 			return;
-		cooldown_map.put(event.getPlayer().getUniqueId(), event.getPlayer().getCooldown(Material.TOTEM));
+		cooldown_map.put(event.getPlayer().getUniqueId(), event.getPlayer().getCooldown(Material.TOTEM_OF_UNDYING));
 	}
 
 }

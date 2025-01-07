@@ -12,8 +12,7 @@ public class TotemCooldownCommand implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if ((cmd.getName().equalsIgnoreCase("totemcooldown") || cmd.getName().equalsIgnoreCase("tcd"))
-				&& sender instanceof Player) {
+		if ((cmd.getName().equalsIgnoreCase("totemcooldown")) && sender instanceof Player) {
 			Player player = (Player) sender;
 			if (args.length < 1)
 				return false;
@@ -22,9 +21,10 @@ public class TotemCooldownCommand implements CommandExecutor {
 				case "settime":
 					plugin.ticktime = Integer.valueOf(args[1]);
 					player.sendMessage("new cooldown tick:" + plugin.ticktime);
+					plugin.getLogger().info(player.getName() + " set new cooldown tick:" + plugin.ticktime);
 					try {
-					plugin.autosave();
-					}catch(Exception e) {
+						plugin.autosave();
+					} catch (Exception e) {
 						plugin.getLogger().warning("TotemCooldown cannot save config.");
 					}
 					break;
